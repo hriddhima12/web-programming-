@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Information Website</title>
+    <style>
+        table.layout {
+            border-collapse: collapse;
+        }
+        table.layout td {
+            vertical-align: top;
+            padding: 0 30px 0 0;
+        }
+        .cover-box {
+            width: 320px;
+            display: flex;
+            flex-wrap: wrap;
+            border: 2px solid black;
+        }
+        .cover-box img {
+            width: 80px;
+            height: 120px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Book Collection</h1>
+
+    <table class="layout">
+        <tr>
+            <td>
+                <p>Books list:</p>
+                <ul>
+                    <li><a href="atomic_habits.html">Atomic Habits</a></li>
+                    <li><a href="to_kill_a_mockingbird.html">To Kill a Mockingbird</a></li>
+                    <li><a href="alchemist.html">The Alchemist</a></li>
+                    <li><a href="matilda.html">Matilda</a></li>
+                    <li><a href="charlie_chocolate_factory.html">Charlie and the Chocolate Factory</a></li>
+                    <li><a href="power_of_subconscious_mind.html">The Power of Your Subconscious Mind</a></li>
+                    <li><a href="the_secret.html">The Secret</a></li>
+                </ul>
+            </td>
+            <td>
+                <div class="cover-box">
+                    <img src="https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg" alt="Atomic Habits">
+                    <img src="https://covers.openlibrary.org/b/isbn/9780060935467-L.jpg" alt="To Kill a Mockingbird">
+                    <img src="https://covers.openlibrary.org/b/isbn/9780062315007-L.jpg" alt="The Alchemist">
+                    <img src="https://covers.openlibrary.org/b/isbn/9780142410370-L.jpg" alt="Matilda">
+                    <img src="https://covers.openlibrary.org/b/isbn/9780142410318-L.jpg" alt="Charlie and the Chocolate Factory">
+                    <img src="https://covers.openlibrary.org/b/isbn/9781585424337-L.jpg" alt="The Power of Your Subconscious Mind">
+                    <img src="https://covers.openlibrary.org/b/isbn/9781582701707-L.jpg" alt="The Secret">
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

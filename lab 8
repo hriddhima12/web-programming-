@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 8 - User Information Form</title>
+<style>
+  body { font-family: Georgia, serif; background: #eef2f5; display: flex; justify-content: center; padding: 30px 16px; margin: 0; }
+  .box { background: #fff; border: 2px solid #1d3557; border-radius: 6px; padding: 28px; width: 100%; max-width: 440px; }
+  h1 { font-size: 22px; margin: 0 0 16px; color: #1d3557; }
+  label { display: block; margin: 12px 0 4px; font-size: 14px; }
+  input[type=text], input[type=tel], input[type=email], select { width: 100%; padding: 9px; font-size: 16px; border: 1px solid #888; border-radius: 4px; box-sizing: border-box; }
+  .radios label { display: inline-block; margin-right: 16px; }
+  .err { color: #b00020; font-size: 13px; min-height: 16px; }
+  .btns { display: flex; gap: 8px; margin-top: 18px; }
+  button { flex: 1; padding: 10px; font-size: 15px; border: 0; border-radius: 4px; background: #1d3557; color: #fff; cursor: pointer; }
+  button.reset { background: #777; }
+  :focus-visible { outline: 3px solid #e63946; outline-offset: 1px; }
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>User Information</h1>
+  <form id="userForm" onsubmit="return submitForm(event)">
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="Full name">
+    <div class="err" id="e-name"></div>
+
+    <label>Gender</label>
+    <div class="radios">
+      <label><input type="radio" name="gender" value="Male"> Male</label>
+      <label><input type="radio" name="gender" value="Female"> Female</label>
+      <label><input type="radio" name="gender" value="Other"> Other</label>
+    </div>
+    <div class="err" id="e-gender"></div>
+
+    <label for="mobile">Mobile number</label>
+    <input type="tel" id="mobile" placeholder="10-digit number" maxlength="10">
+    <div class="err" id="e-mobile"></div>
+
+    <label for="email">Mail ID</label>
+    <input type="email" id="email" placeholder="name@example.com">
+    <div class="err" id="e-email"></div>
+
+    <label for="city">City</label>
+    <input type="text" id="city">
+    <div class="err" id="e-city"></div>
+
+    <label for="state">State</label>
+    <input type="text" id="state">
+    <div class="err" id="e-state"></div>
+
+    <label for="country">Country</label>
+    <select id="country">
+      <option value="">-- Select country --</option>
+      <option>Nepal</option>
+      <option>India</option>
+      <option>Bangladesh</option>
+      <option>Bhutan</option>
+      <option>Sri Lanka</option>
+      <option>Other</option>
+    </select>
+    <div class="err" id="e-country"></div>
+
+    <div class="btns">
+      <button type="submit">Submit</button>
+      <button type="reset" class="reset" onclick="clearErrors()">Clear</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  var fields = ["name", "mobile", "email", "city", "state", "country"];
+
+  function clearErrors() {
+    document.querySelectorAll(".err").forEach(function (e) { e.textContent = ""; });
+  }
+
+  function submitForm(event) {
+    event.preventDefault();
+    clearErrors();
+    var ok = true;
+
+    var name = document.getElementById("name").value.trim();
+    var mobile = document.getElementById("mobile").value.trim();
+    var email = document.getElementById("email").value.trim();
+    var city = document.getElementById("city").value.trim();
+    var state = document.getElementById("state").value.trim();
+    var country = document.getElementById("country").value;
+    var g = document.querySelector('input[name="gender"]:checked');
+
+    function fail(id, msg) { document.getElementById("e-" + id).textContent = msg; ok = false; }
+
+    if (name === "") fail("name", "Enter your name.");
+    if (!g) fail("gender", "Select a gender.");
+    if (!/^[0-9]{10}$/.test(mobile)) fail("mobile", "Enter a valid 10-digit mobile number.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) fail("email", "Enter a valid email address.");
+    if (city === "") fail("city", "Enter your city.");
+    if (state === "") fail("state", "Enter your state.");
+    if (country === "") fail("country", "Select a country.");
+
+    if (!ok) return false;
+
+    // Pass the data to the next page through the URL query string
+    var params = new URLSearchParams({
+      name: name,
+      gender: g.value,
+      mobile: mobile,
+      email: email,
+      city: city,
+      state: state,
+      country: country
+    });
+    window.location.href = "lab8_display.html?" + params.toString();
+    return false;
+  }
+</script>
+</body>
+</html>

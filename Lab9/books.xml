@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+    <book id="1" category="Self-Help">
+        <title>Atomic Habits</title>
+        <author>James Clear</author>
+        <year>2018</year>
+        <price>599</price>
+    </book>
+    <book id="2" category="Fiction">
+        <title>The Alchemist</title>
+        <author>Paulo Coelho</author>
+        <year>1988</year>
+        <price>350</price>
+    </book>
+    <book id="3" category="Children">
+        <title>Matilda</title>
+        <author>Roald Dahl</author>
+        <year>1988</year>
+        <price>299</price>
+    </book>
+    <book id="4" category="Self-Help">
+        <title>The Secret</title>
+        <author>Rhonda Byrne</author>
+        <year>2006</year>
+        <price>399</price>
+    </book>
+    <book id="5" category="Classic">
+        <title>To Kill a Mockingbird</title>
+        <author>Harper Lee</author>
+        <year>1960</year>
+        <price>450</price>
+    </book>
+</library>

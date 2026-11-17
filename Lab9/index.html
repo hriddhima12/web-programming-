@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 9 - XML DOM Book Table</title>
+<style>
+    body {
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: linear-gradient(135deg, #fdfbfb, #ebedee);
+    }
+    .container {
+        max-width: 820px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 28px 32px;
+        border-radius: 16px;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+    }
+    h2 { margin-top: 0; text-align: center; color: #1d3557; }
+    .buttons { text-align: center; margin-bottom: 14px; }
+    button {
+        margin: 4px;
+        padding: 10px 18px;
+        font-size: 15px;
+        font-weight: bold;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    #loadBtn   { background: #2a9d8f; }
+    #changeBtn { background: #f4a261; }
+    #removeBtn { background: #e63946; }
+    #message { text-align: center; min-height: 22px; color: #457b9d; font-weight: bold; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th { background: #1d3557; color: #fff; padding: 12px; text-align: left; }
+    td { padding: 11px 12px; border-bottom: 1px solid #e5e5e5; }
+    tr:nth-child(even) td { background: #f5f8fb; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Books Data from XML File</h2>
+
+    <div class="buttons">
+        <button id="loadBtn"   onclick="loadXML()">Load XML Data</button>
+        <button id="changeBtn" onclick="changeTitle()">Change First Book Title</button>
+        <button id="removeBtn" onclick="removeLast()">Remove Last Book</button>
+    </div>
+
+    <p id="message"></p>
+    <div id="output"></div>
+</div>
+
+<script>
+    var xmlDoc = null;     // will hold the parsed XML document
+
+    // 1. Read books.xml and parse it into an XML DOM
+    function loadXML() {
+        fetch("books.xml")
+            .then(function (response) { return response.text(); })
+            .then(function (text) {
+                var parser = new DOMParser();
+                xmlDoc = parser.parseFromString(text, "text/xml");
+                showTable();
+                setMessage("XML data loaded successfully.");
+            })
+            .catch(function () {
+                setMessage("Could not load books.xml - open the page using a local server.");
+            });
+    }
+
+    // 2. Display the XML data in a table
+    function showTable() {
+        var books = xmlDoc.getElementsByTagName("book");
+        var html = "<table><tr><th>ID</th><th>Title</th><th>Author</th>" +
+                   "<th>Category</th><th>Year</th><th>Price (Rs)</th></tr>";
+
+        for (var i = 0; i < books.length; i++) {
+            var b = books[i];
+            html += "<tr>" +
+                "<td>" + b.getAttribute("id") + "</td>" +
+                "<td>" + b.getElementsByTagName("title")[0].textContent + "</td>" +
+                "<td>" + b.getElementsByTagName("author")[0].textContent + "</td>" +
+                "<td>" + b.getAttribute("category") + "</td>" +
+                "<td>" + b.getElementsByTagName("year")[0].textContent + "</td>" +
+                "<td>" + b.getElementsByTagName("price")[0].textContent + "</td>" +
+                "</tr>";
+        }
+        document.getElementById("output").innerHTML = html + "</table>";
+    }
+
+    // 3. Modify the DOM - change the first book title
+    function changeTitle() {
+        if (!xmlDoc) { setMessage("Please load the XML data first."); return; }
+        var first = xmlDoc.getElementsByTagName("title")[0];
+        first.textContent = "Atomic Habits (Updated Edition)";
+        showTable();
+        setMessage("Title of the first book changed.");
+    }
+
+    // 4. Modify the DOM - remove the last book
+    function removeLast() {
+        if (!xmlDoc) { setMessage("Please load the XML data first."); return; }
+        var books = xmlDoc.getElementsByTagName("book");
+        if (books.length === 0) { setMessage("No books left to remove."); return; }
+        var last = books[books.length - 1];
+        last.parentNode.removeChild(last);
+        showTable();
+        setMessage("Last book removed.");
+    }
+
+    function setMessage(text) {
+        document.getElementById("message").textContent = text;
+    }
+</script>
+
+</body>
+</html>

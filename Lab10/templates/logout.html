@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card">
+        <div class="emoji">🙏</div>
+        <h2>Thank you, {{ name }}!</h2>
+        <p class="sub">You have been logged out successfully.</p>
+        <p class="duration">
+            Duration of usage:
+            <strong>{{ minutes }} min {{ seconds }} sec</strong>
+        </p>
+
+        <a class="btn" href="{{ url_for('home') }}">Login Again</a>
+    </div>
+</body>
+</html>

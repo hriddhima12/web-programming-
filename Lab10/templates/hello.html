@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- start time at the right top corner -->
+    <div class="time-badge">🕒 Started at: {{ start_time }}</div>
+
+    <div class="card">
+        <div class="emoji">😊</div>
+        <h2>Hello, {{ name }}!</h2>
+        <p class="sub">You are now logged in to the application.</p>
+
+        <a class="btn logout" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</body>
+</html>

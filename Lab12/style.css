@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #43cea2, #185a9d);
+}
+
+.card {
+    width: 400px;
+    padding: 36px 34px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.emoji { font-size: 54px; }
+h2 { margin: 8px 0 4px; color: #185a9d; }
+.sub { color: #777; margin-bottom: 22px; }
+
+label {
+    display: block;
+    margin: 12px 0 4px;
+    text-align: left;
+    font-weight: bold;
+    color: #444;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #cfe3f3;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+button, .btn {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background: #185a9d;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button { width: 100%; }
+
+/* result page */
+.denied  { border-top: 8px solid #e63946; }
+.denied .message { color: #c1121f; }
+.allowed { border-top: 8px solid #2a9d8f; }
+.allowed .message { color: #1b7f5c; }

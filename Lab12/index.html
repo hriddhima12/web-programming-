@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 12 - Site Entry</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+    <div class="emoji">🔐</div>
+    <h2>Site Entry</h2>
+    <p class="sub">Enter your name and age to continue</p>
+
+    <form action="check.php" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" min="1" max="120" placeholder="Enter your age" required>
+
+        <button type="submit">Enter</button>
+    </form>
+</div>
+
+</body>
+</html>
